@@ -66,7 +66,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -531,7 +531,7 @@
   <customwidget>
    <class>MatplotlibWidget</class>
    <extends>QGraphicsView</extends>
-   <header>pyqtgrpah</header>
+   <header>pyqtgraph</header>
   </customwidget>
  </customwidgets>
  <resources/>
