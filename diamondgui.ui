@@ -14,7 +14,7 @@
    <string>mini USB counter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="PlotWidget" name="plotWidget">
+   <widget class="ImageView" name="plotWidget">
     <property name="geometry">
      <rect>
       <x>10</x>
@@ -230,7 +230,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PlotWidget</class>
+   <class>ImageView</class>
    <extends>QGraphicsView</extends>
    <header location="global">pyqtgraph</header>
   </customwidget>
