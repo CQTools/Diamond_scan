@@ -62,7 +62,8 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 	counter = None 
 	time = 0
 	ypos = 200
-	xpos = 100
+	xpos = 200
+	channel = 1
 	
 
 
@@ -94,11 +95,10 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 			self.counter.set_gate_time(10) # sets gate time to 100ms
 			self.gate_time  = float(self.counter.get_gate_time())
 			#self.label_gate.setText(str(self.gate_time) +" ms")
-			channel = 1
 			#starttime = time.time()
-			self.count = float(self.counter.get_counts().split(' ')[channel])
-			#self.freq = float(self.count*1000/self.gate_time)
-			#self.label_channel.setText(str(1))
+			self.count = float(self.counter.get_counts().split(' ')[self.channel])
+			print self.counter.get_counts().split(' ')
+			self.label_count.setText(str(self.count))
 			#gate_time  = float(self.counter.get_gate_time())
 			
 			
@@ -112,27 +112,48 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 		
 	
 	def pushUp_clicked(self,value):
-		self.ypos = self.ypos -1
-		print self.ypos
+		self.ypos = self.ypos -10
+		if self.ypos < 0:
+			self.ypos = 0
+			
+
 
 	def pushDown_clicked(self,value):
-		self.ypos = self.ypos +1
-		print self.ypos
+		self.ypos = self.ypos +10
+		if self.ypos > 400:
+			self.ypos = 400
+		
 
 	def pushLeft_clicked(self,value):
-		self.xpos = self.xpos -1
-		print self.ypos
+		self.xpos = self.xpos -10
+		if self.xpos < 0:
+			self.xpos = 0
 
 	def pushRight_clicked(self,value):
-		self.xpos = self.xpos +1
-		print self.ypos
+		self.xpos = self.xpos +10
+		if self.xpos > 400:
+			self.xpos = 400
+
+	def count_max(self,value):
+		max_counts = 70,000
+		if value > self.max_counts:
+			max_counts = value
+		return max_counts
+		
+	
+	def keyPressEvent(self,event):
+		print 'a'
+			
+			
 
 		
-		
 	def update(self):
-		cv2.circle(self.imgArray,(self.ypos,self.xpos),3,color=[0,30000,0],thickness=-1)
-		self.imageview.setImage(self.imgArray,levels=(0,30000))
-		
+		self.count = float(self.counter.get_counts().split(' ')[self.channel])
+		self.color = [self.count,self.count,self.count]
+		self.label_count.setText(str(self.count))
+		cv2.rectangle(self.imgArray,(self.ypos-5,self.xpos-5),(self.ypos+5,self.xpos+5),color = self.color,thickness = -1)
+		cv2.circle(self.imgArray,(self.ypos,self.xpos),2,color=[0,30000,0],thickness=-1)
+		self.imageview.setImage(self.imgArray,levels=(50,30000))		
 										
 		
 		
