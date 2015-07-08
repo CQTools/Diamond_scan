@@ -21,35 +21,38 @@ import Counter as cm
 
 form_class = uic.loadUiType("diamondgui.ui")[0] 
 
+	
+
 def serial_ports():
-    
-	"""Lists serial ports
-	:raises EnvironmentError:
-	On unsupported or unknown platforms
-	:returns:
-	A list of available serial ports
-	"""				
-	if sys.platform.startswith('win'):
-		ports = ['COM' + str(i + 1) for i in range(256)]
-	elif sys.platform.startswith('linux'):
-	# this is to exclude your current terminal "/dev/tty"
-		ports = glob.glob('/dev/serial/by-id/usb-C*')
-	elif sys.platform.startswith('darwin'):
-		ports = glob.glob('/dev/tty.*')
-	
-	else:
-		raise EnvironmentError('Unsupported platform')
-	
-	result = []
-	for port in ports:
-		try:
-			s = serial.Serial(port)
-			s.close()
-			result.append(port)
-		except serial.SerialException:
-			pass
-	return result
-    
+    """Lists serial ports
+
+    :raises EnvironmentError:
+        On unsupported or unknown platforms
+    :returns:
+        A list of available serial ports
+    """
+    if sys.platform.startswith('win'):
+        ports = ['COM' + str(i + 1) for i in range(256)]
+
+    elif sys.platform.startswith('linux'):
+        # this is to exclude your current terminal "/dev/tty"
+        ports = glob.glob('/dev/serial/by-id/usb-C*')
+
+    elif sys.platform.startswith('darwin'):
+        ports = glob.glob('/dev/tty.*')
+
+    else:
+        raise EnvironmentError('Unsupported platform')
+
+    result = []
+    for port in ports:
+        try:
+            s = serial.Serial(port)
+            s.close()
+            result.append(port)
+        except (OSError, serial.SerialException):
+            pass
+    return result
 
 
 
@@ -81,19 +84,19 @@ class MyWindowClass(QtGui.QMainWindow, form_class):
 		
 	def ButtonConnect_clicked(self,connection):
 		if not self.connected:
-			#self.counter = cm.Countercomm(str(self.comboSerialBox.currentText()))
+			self.counter = cm.Countercomm(str(self.comboSerialBox.currentText()))
 			self.timer = QTimer()
 			self.connected = True
 			self.timer.timeout.connect(self.update)
 			self.timer.setInterval(100)
 			self.timer.start()
-			#self.control_label.setText('connected to ' + str(self.comboSerialBox.currentText()))
-			#self.counter.set_gate_time(100) # sets gate time to 100ms
-			#self.gate_time  = float(self.counter.get_gate_time())
+			self.control_label.setText('connected to ' + str(self.comboSerialBox.currentText()))
+			self.counter.set_gate_time(10) # sets gate time to 100ms
+			self.gate_time  = float(self.counter.get_gate_time())
 			#self.label_gate.setText(str(self.gate_time) +" ms")
-			#channel = 1
+			channel = 1
 			#starttime = time.time()
-			#self.count = float(self.counter.get_counts().split(' ')[channel])
+			self.count = float(self.counter.get_counts().split(' ')[channel])
 			#self.freq = float(self.count*1000/self.gate_time)
 			#self.label_channel.setText(str(1))
 			#gate_time  = float(self.counter.get_gate_time())
