@@ -14,6 +14,34 @@
    <string>mini USB counter</string>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <widget class="PlotWidget" name="plotWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>981</width>
+      <height>436</height>
+     </rect>
+    </property>
+    <property name="backgroundBrush">
+     <brush brushstyle="SolidPattern">
+      <color alpha="255">
+       <red>255</red>
+       <green>255</green>
+       <blue>255</blue>
+      </color>
+     </brush>
+    </property>
+    <property name="foregroundBrush">
+     <brush brushstyle="NoBrush">
+      <color alpha="255">
+       <red>0</red>
+       <green>0</green>
+       <blue>0</blue>
+      </color>
+     </brush>
+    </property>
+   </widget>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -59,17 +87,20 @@
    <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>640</x>
-      <y>60</y>
-      <width>356</width>
-      <height>281</height>
+      <x>5</x>
+      <y>580</y>
+      <width>496</width>
+      <height>136</height>
      </rect>
     </property>
-    <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,0,0,0" rowminimumheight="0,0,0,0,0,0" columnminimumwidth="0,0,0,0">
-     <item row="3" column="2">
+    <layout class="QGridLayout" name="gridLayout_3" columnstretch="0,0,0,0">
+     <item row="1" column="2">
       <spacer name="verticalSpacer">
        <property name="orientation">
         <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Minimum</enum>
        </property>
        <property name="sizeHint" stdset="0">
         <size>
@@ -80,26 +111,13 @@
       </spacer>
      </item>
      <item row="0" column="2">
-      <widget class="QLabel" name="label_count">
-       <property name="font">
-        <font>
-         <family>Noto Sans [unknown]</family>
-         <pointsize>28</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>0</string>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
       <widget class="QPushButton" name="pushUp">
        <property name="text">
         <string>Up</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="0">
+     <item row="0" column="0">
       <spacer name="horizontalSpacer_2">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -115,34 +133,28 @@
        </property>
       </spacer>
      </item>
-     <item row="0" column="0">
-      <widget class="QLabel" name="label_optical_freq_4">
-       <property name="font">
-        <font>
-         <family>Noto Sans [unknown]</family>
-         <pointsize>28</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Counts</string>
-       </property>
-      </widget>
-     </item>
-     <item row="3" column="3">
+     <item row="1" column="3">
       <widget class="QPushButton" name="pushRight">
        <property name="text">
         <string>Right</string>
        </property>
       </widget>
      </item>
-     <item row="3" column="0">
+     <item row="1" column="0">
       <widget class="QPushButton" name="pushLeft">
        <property name="text">
         <string>Left</string>
        </property>
       </widget>
      </item>
-     <item row="2" column="3">
+     <item row="3" column="2">
+      <widget class="QPushButton" name="pushDown">
+       <property name="text">
+        <string>Down</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="3">
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
@@ -158,38 +170,51 @@
        </property>
       </spacer>
      </item>
-     <item row="5" column="2">
-      <widget class="QPushButton" name="pushDown">
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>495</y>
+      <width>491</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_optical_freq_4">
+       <property name="font">
+        <font>
+         <family>Noto Sans [unknown]</family>
+         <pointsize>28</pointsize>
+        </font>
+       </property>
        <property name="text">
-        <string>Down</string>
+        <string>Counts</string>
        </property>
       </widget>
      </item>
-     <item row="1" column="2">
-      <spacer name="verticalSpacer_2">
-       <property name="orientation">
-        <enum>Qt::Vertical</enum>
+     <item>
+      <widget class="QLabel" name="label_count">
+       <property name="font">
+        <font>
+         <family>Noto Sans [unknown]</family>
+         <pointsize>28</pointsize>
+        </font>
        </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>20</width>
-         <height>40</height>
-        </size>
+       <property name="text">
+        <string>0</string>
        </property>
-      </spacer>
+      </widget>
      </item>
     </layout>
    </widget>
-   <widget class="ImageView" name="imageview">
-    <property name="geometry">
-     <rect>
-      <x>15</x>
-      <y>50</y>
-      <width>596</width>
-      <height>461</height>
-     </rect>
-    </property>
-   </widget>
+   <zorder>plotWidget</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>gridLayoutWidget</zorder>
+   <zorder>horizontalSpacer_3</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -197,7 +222,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>23</height>
+     <height>27</height>
     </rect>
    </property>
   </widget>
@@ -205,7 +230,7 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>ImageView</class>
+   <class>PlotWidget</class>
    <extends>QGraphicsView</extends>
    <header location="global">pyqtgraph</header>
   </customwidget>
