@@ -10,6 +10,9 @@
     <height>795</height>
    </rect>
   </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
   <property name="windowTitle">
    <string>Nitrogen Vacancy Search</string>
   </property>
@@ -294,6 +297,9 @@
      </widget>
     </widget>
     <widget class="QWidget" name="tab">
+     <property name="focusPolicy">
+      <enum>Qt::StrongFocus</enum>
+     </property>
      <attribute name="title">
       <string>NV search</string>
      </attribute>
@@ -338,6 +344,9 @@
          <property name="text">
           <string>Up</string>
          </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
          <property name="autoRepeat">
           <bool>true</bool>
          </property>
@@ -367,6 +376,9 @@
          <property name="text">
           <string>Right</string>
          </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
          <property name="autoRepeat">
           <bool>true</bool>
          </property>
@@ -380,6 +392,9 @@
          <property name="text">
           <string>Left</string>
          </property>
+         <property name="checkable">
+          <bool>false</bool>
+         </property>
          <property name="autoRepeat">
           <bool>true</bool>
          </property>
@@ -392,6 +407,9 @@
         <widget class="QPushButton" name="pushDown">
          <property name="text">
           <string>Down</string>
+         </property>
+         <property name="checkable">
+          <bool>false</bool>
          </property>
          <property name="autoRepeat">
           <bool>true</bool>
